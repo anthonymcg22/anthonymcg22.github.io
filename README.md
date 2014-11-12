@@ -153,10 +153,11 @@ flashview.returnSearchResults = function (data, criteria) {
         else
         flashview.QandA = [];
     };
+    alert(criteria);
     flashview.sort();
 };
-flashview.searchCriteria = document.getElementById("search").value;
+flashview.searchCriteria = document.getElementById("search");
 flashview.search = function() {
-    flashview.AJAX('GET', "https://flashview.firebaseio.com/.json", flashview.returnSearchResults, null, flashview.searchCriteria);
+    flashview.AJAX('GET', "https://flashview.firebaseio.com/.json", flashview.returnSearchResults, null, flashview.searchCriteria.value);
 };
     flashview.AJAX('GET', "https://flashview.firebaseio.com/.json", flashview.initialGet);
