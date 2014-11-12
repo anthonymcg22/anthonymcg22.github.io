@@ -107,13 +107,13 @@ flashview.delete = function (i, key) {
     flashview.QandA.splice(i, 1);
     flashview.AJAX('DELETE', "https://flashview.firebaseio.com/" + key + ".json", function () { flashview.sort(); });
 };
-flashview.AJAX = function (method, url, callback, data, searchCriteria) {
+flashview.AJAX = function (method, url, callback, data, criteria) {
     var request = new XMLHttpRequest();
     request.open(method, url, true);
     request.onload = function () {
         if (this.status >= 200 & this.status < 400) {
             if (callback) {
-                callback(JSON.parse(this.response), searchCriteria);
+                callback(JSON.parse(this.response), criteria);
             }
         }
         else {
@@ -155,23 +155,9 @@ var gather = function (data, criteria) {
     };
     flashview.sort();
 };
+flashview.searchCriteria = document.getElementById("search").value;
 var search = function() {
-    var criteria = var gather = function (data, criteria) {
-    flashview.QandA = [];
-    for (var x in data) {
-        data[x].key = x;
-
-        if (criteria === "")
-        flashview.QandA.push(data[x]);
-
-        else if (data[x].name.indexOf(criteria) > -1)
-            flashview.QandA.push(data[x]);
-        else
-        flashview.QandA = [];
-    };
-    flashview.sort();
-};
-    flashview.AJAX('GET', "https://flashview.firebaseio.com/.json", gather, null, criteria);
+    flashview.AJAX('GET', "https://flashview.firebaseio.com/.json", gather, null, flashview.searchCriteria);
 };
 
     flashview.AJAX('GET', "https://flashview.firebaseio.com/.json", flashview.initialGet);
