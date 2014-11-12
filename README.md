@@ -28,7 +28,7 @@ flashview.submitQ = function () {       //adds an object with props: name, Q, A 
 flashview.drawHome = function () {        //shows home page with table of questions
     var body = document.getElementById("body");  //grab body element
     document.getElementById("left").innerHTML = '<div onclick="flashview.addQ()" class="btn btn-success"> ADD QUESTION </div>';
-    var table = '<table class="table"><thead><th>Name</th><th>Question</th><th><button style="font-size: 1.6em;" class="btn btn-info" onclick="search()">Search</button></th><th><input type="text" id="search" placeholder="search criteria"></th></thead><tbody id="tbody">'; //start a table
+    var table = '<table class="table"><thead><th>Name</th><th>Question</th><th><button style="font-size: 1.6em;" class="btn btn-info" onclick="flashview.search()">Search</button></th><th><input type="text" id="search" placeholder="search criteria"></th></thead><tbody id="tbody">'; //start a table
     body.innerHTML = "";    //clear body
     for (var i = 0; i < flashview.QandA.length; i++) {    //go through array and make table rows and cells of question objects
         table += '<tr class="m"><td><span><strong>' + flashview.QandA[i].name + '</strong></span></td><td><span onclick="flashview.run(' + i + ')">' + flashview.shortQ[i] + '</span></td><td><button onclick="flashview.edit(' + i + ')" class="btn btn-danger">Edit</button></td><td><button onclick="flashview.delete(' + i + ',\'' + flashview.QandA[i].key + '\')" class="btn btn-warning">Delete</button></td></tr>';
@@ -156,8 +156,7 @@ flashview.returnSearchResults = function (data, criteria) {
     flashview.sort();
 };
 flashview.searchCriteria = document.getElementById("search").value;
-var search = function() {
+flashview.search = function() {
     flashview.AJAX('GET', "https://flashview.firebaseio.com/.json", flashview.returnSearchResults, null, flashview.searchCriteria);
 };
-
     flashview.AJAX('GET', "https://flashview.firebaseio.com/.json", flashview.initialGet);
