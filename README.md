@@ -161,3 +161,4 @@ flashview.search = function() {
     flashview.AJAX('GET', "https://flashview.firebaseio.com/.json", flashview.returnSearchResults, null, flashview.searchCriteria.value);
 };
     flashview.AJAX('GET', "https://flashview.firebaseio.com/.json", flashview.initialGet);
+
