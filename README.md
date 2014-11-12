@@ -34,7 +34,9 @@ flashview.drawHome = function () {        //shows home page with table of questi
         table += '<tr class="m"><td><span><strong>' + flashview.QandA[i].name + '</strong></span></td><td><span onclick="flashview.run(' + i + ')">' + flashview.shortQ[i] + '</span></td><td><button onclick="flashview.edit(' + i + ')" class="btn btn-danger">Edit</button></td><td><button onclick="flashview.delete(' + i + ',\'' + flashview.QandA[i].key + '\')" class="btn btn-warning">Delete</button></td></tr>';
     };
     table += '</tbody></table>';  //closing tags for table
-    if (flashview.QandA.length > 0)
+    if (flashview.QandA.length === 0)
+        body.innerHTML = '<table class="table"><thead><th>Name</th><th>Question</th><th><button style="font-size: 1.6em;" class="btn btn-info" onclick="flashview.search()">Search</button></th><th><input type="text" id="search" placeholder="search criteria"></th></thead><tbody id="tbody"></tbody></table>';
+    else
         body.innerHTML += table;   //add table to body
 };
 
@@ -162,4 +164,5 @@ flashview.search = function() {
     flashview.AJAX('GET', "https://flashview.firebaseio.com/.json", flashview.returnSearchResults, null, flashview.searchCriteria.value);
 };
     flashview.AJAX('GET', "https://flashview.firebaseio.com/.json", flashview.initialGet);
+
 
