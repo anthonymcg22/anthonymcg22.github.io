@@ -145,15 +145,16 @@ flashview.returnSearchResults = function (data, criteria) {
     for (var x in data) {
         data[x].key = x;
 
+        if (data[x].name.indexOf(criteria) === -1)
+            flashview.QandA = [];
         if (criteria === "")
         flashview.QandA.push(data[x]);
-
         else if (data[x].name.indexOf(criteria) > -1)
             flashview.QandA.push(data[x]);
-        else
-        flashview.QandA = [];
+        
+        alert(data[x].name.indexOf(criteria));
     };
-    alert(criteria);
+
     flashview.sort();
 };
 flashview.searchCriteria = document.getElementById("search");
