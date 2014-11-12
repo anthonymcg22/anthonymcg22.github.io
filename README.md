@@ -140,7 +140,7 @@ flashview.initialGet = function (data) {
     };
     flashview.sort();
 };
-var gather = function (data, criteria) {
+flashview.returnSearchResults = function (data, criteria) {
     flashview.QandA = [];
     for (var x in data) {
         data[x].key = x;
@@ -157,7 +157,7 @@ var gather = function (data, criteria) {
 };
 flashview.searchCriteria = document.getElementById("search").value;
 var search = function() {
-    flashview.AJAX('GET', "https://flashview.firebaseio.com/.json", gather, null, flashview.searchCriteria);
+    flashview.AJAX('GET', "https://flashview.firebaseio.com/.json", flashview.returnSearchResults, null, flashview.searchCriteria);
 };
 
     flashview.AJAX('GET', "https://flashview.firebaseio.com/.json", flashview.initialGet);
