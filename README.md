@@ -156,7 +156,7 @@ flashview.returnSearchResults = function (data, criteria) {
         
         alert(data[x].name.indexOf(criteria));
     };
-
+        alert(criteria);
     flashview.sort();
 };
 flashview.searchCriteria = document.getElementById("search");
