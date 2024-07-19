@@ -15,7 +15,7 @@ flashview.submitQ = function () {       //adds an object with props: name, Q, A 
     if (name.value === "" || Q.value === "" || A.value === "") { alert("All fields must contain a value"); }
     else {
         var newQ = { name: name.value, Q: Q.value, A: A.value };  //make object with 3 properties holding input values
-        flashview.AJAX('POST', "https://flashview.firebaseio.com/.json", function (data) { flashview.getKey(data, newQ) }, newQ);
+        flashview.AJAX('POST', "https://flashview-813d0-default-rtdb.firebaseio.com/.json", function (data) { flashview.getKey(data, newQ) }, newQ);
     };
 };
 flashview.drawHome = function () {        //shows home page with table of questions
@@ -91,14 +91,14 @@ flashview.saveEdit = function(i, key) {
     var A = document.getElementById("3").value;
     flashview.QandA.splice(i, 1);
     flashview.QandA.splice(i, 0, { name: name, Q: Q, A: A, key: key });
-    flashview.AJAX('PUT', "https://flashview.firebaseio.com/" + key + ".json", function () { flashview.sort(); }, { name: name, Q: Q, A: A });
+    flashview.AJAX('PUT', "https://flashview-813d0-default-rtdb.firebaseio.com/" + key + ".json", function () { flashview.sort(); }, { name: name, Q: Q, A: A });
 };
 flashview.cancelEdit = function () {
     flashview.drawHome();
 };
 flashview.delete = function (i, key) {
     flashview.QandA.splice(i, 1);
-    flashview.AJAX('DELETE', "https://flashview.firebaseio.com/" + key + ".json", function () { flashview.sort(); });
+    flashview.AJAX('DELETE', "https://flashview-813d0-default-rtdb.firebaseio.com/" + key + ".json", function () { flashview.sort(); });
 };
 flashview.AJAX = function (method, url, callback, data) {
     var request = new XMLHttpRequest();
@@ -133,5 +133,5 @@ flashview.initialGet = function (data) {
     };
     flashview.sort();
 };
-    flashview.AJAX('GET', "https://flashview.firebaseio.com/.json", flashview.initialGet);
+    flashview.AJAX('GET', "https://flashview-813d0-default-rtdb.firebaseio.com/.json", flashview.initialGet);
 
